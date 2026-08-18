@@ -75,7 +75,19 @@ app.use('*', secureHeaders({
   },
   crossOriginEmbedderPolicy: false,
   crossOriginResourcePolicy: false,
+  // تجنّب تخزين HTML في CDN
+  referrerPolicy: 'strict-origin-when-cross-origin',
 }))
+
+// Helper middleware: Cache-Control no-store لـ HTML
+app.use('*', async (c, next) => {
+  await next()
+  const ct = c.res.headers.get('content-type') || ''
+  if (ct.includes('text/html')) {
+    c.res.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+    c.res.headers.set('Pragma', 'no-cache')
+  }
+})
 
 app.use('*', cors({
   origin: (origin, c) => {
