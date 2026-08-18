@@ -19,52 +19,27 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+            node-version: '20'
+            cache: 'npm'
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Type check (informational only)
-        run: |
-          echo "=== tsc -b output (errors don't fail the build) ==="
-          npx tsc -b 2>&1 | tee tsc-output.log || true
-          echo "=== END ==="
-        continue-on-error: true
-
-      - name: Build (Vite only - tsc errors are tolerated)
-        run: |
-          echo "=== Building with Vite ==="
-          npx vite build 2>&1 | tee build-output.log
-          echo "=== Build complete ==="
+      - name: Build (Vite only)
+        run: npx vite build
         env:
           NODE_ENV: production
 
-      - name: Upload build logs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-logs
-          path: build-output.log
-          if-no-files-found: ignore
-
-      - name: List dist directory
-        run: |
-          echo "=== dist/ contents ==="
-          ls -la dist/
-          echo "=== assets/ contents ==="
-          ls -la dist/assets/
+      - name: Install wrangler
+        run: npm install -g wrangler@3.85.0
 
       - name: Deploy to Cloudflare Workers
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: ./
-          command: deploy --verbose 2>&1 | tee wrangler-deploy.log
+        run: |
+          wrangler deploy --verbose 2>&1 | tee wrangler-deploy.log
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        continue-on-error: true
 
       - name: Upload deploy logs
         if: always()
