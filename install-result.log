@@ -1,0 +1,29 @@
+﻿npm.cmd : npm warn cleanup Failed to remove some directories [
+At line:1 char:76
++ ... r' ; $out = & 'f:\anas al saleh1\node-portable\node-v20.18.0-win-x64\ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm warn cleanu...e directories [ 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm warn cleanup   [
+npm warn cleanup     'F:\\anas al 
+saleh1\\node-portable\\wrangler\\node_modules\\resolve',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'F:\anas al 
+saleh1\node-portable\wrangler\node_modules\resolve\test\node_path'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'F:\\anas al 
+saleh1\\node-portable\\wrangler\\node_modules\\resolve\\test\\node_path'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+npm error code 1
+npm error path F:\anas al saleh1\node-portable\wrangler\node_modules\esbuild
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node install.js
+npm error 'node' is not recognized as an internal or external command,
+npm error operable program or batch file.
+npm error A complete log of this run can be found in: C:\Users\Khaled\AppData\L
+ocal\npm-cache\_logs\2026-08-17T22_58_07_388Z-debug-0.log

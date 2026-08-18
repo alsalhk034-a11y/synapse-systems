@@ -1,0 +1,30 @@
+{
+  "name": "@synapse/worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node ../node-portable/wrangler/node_modules/wrangler/bin/wrangler.js dev",
+    "deploy": "node ../node-portable/wrangler/node_modules/wrangler/bin/wrangler.js deploy",
+    "tail": "node ../node-portable/wrangler/node_modules/wrangler/bin/wrangler.js tail",
+    "db:create": "node ../node-portable/wrangler/node_modules/wrangler/bin/wrangler.js d1 create synapse-systems-db",
+    "db:migrate": "node ../node-portable/wrangler/node_modules/wrangler/bin/wrangler.js d1 migrations apply synapse-systems-db --remote",
+    "db:seed": "node ../node-portable/wrangler/node_modules/wrangler/bin/wrangler.js d1 execute synapse-systems-db --remote --file=./d1/seed.sql",
+    "r2:create": "node ../node-portable/wrangler/node_modules/wrangler/bin/wrangler.js r2 bucket create synapse-files",
+    "kv:create": "node ../node-portable/wrangler/node_modules/wrangler/bin/wrangler.js kv namespace create CACHE",
+    "secrets:setup": "node scripts/setup-secrets.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.6.0",
+    "jose": "^5.9.0",
+    "bcryptjs": "^2.4.3",
+    "zod": "^3.23.8",
+    "nanoid": "^5.0.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241112.0",
+    "typescript": "^5.6.0",
+    "wrangler": "^3.85.0"
+  }
+}

@@ -1,0 +1,29 @@
+# Worker dependencies
+worker/node_modules/
+
+# Wrangler
+.wrangler/
+.dev.vars
+
+# Build outputs
+dist/
+build/
+
+# Secrets (NEVER commit these)
+*.env
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp

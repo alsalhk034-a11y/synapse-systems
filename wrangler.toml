@@ -1,0 +1,77 @@
+# ================================================================
+# Synapse Systems - Cloudflare Configuration
+# ================================================================
+# هذا الملف يتحكم في:
+# - Worker (Backend API)
+# - D1 Database (قاعدة البيانات)
+# - R2 Bucket (الملفات الطبية)
+# - KV Namespace (الكاش)
+# - Pages (Frontend)
+# ================================================================
+
+name = "synapse-systems"
+compatibility_date = "2024-11-12"
+compatibility_flags = ["nodejs_compat"]
+main = "worker/src/index.ts"
+
+# ================================================================
+# متغيرات البيئة (تظهر في dashboard.cloudflare.com)
+# ================================================================
+[vars]
+ENVIRONMENT = "production"
+CLINIC_NAME = "عيادة النور للأطفال"
+CLINIC_NAME_EN = "Al-Noor Pediatric Clinic"
+APP_VERSION = "1.0.0"
+# JWT_SECRET و ENCRYPTION_KEY يوضعان كأسرار عبر:
+#   wrangler secret put JWT_SECRET
+#   wrangler secret put ENCRYPTION_KEY
+#   wrangler secret put DATABASE_ENCRYPTION_KEY
+# (لا تكتبها هنا أبداً)
+
+# ================================================================
+# D1 Database - SQLite موزع عالمياً
+# ================================================================
+[[d1_databases]]
+binding = "DB"
+database_name = "synapse-systems-db"
+database_id = "59afaea5-384b-4fd5-b0dc-e8f61f1f995c"
+
+# ================================================================
+# R2 Bucket - تخزين الملفات الطبية (صور الأشعة، التقارير PDF...)
+# مفعّل مؤقتاً حتى يفعّل المستخدم R2 من Dashboard
+# ================================================================
+# [[r2_buckets]]
+# binding = "STORAGE"
+# bucket_name = "synapse-files"
+
+# ================================================================
+# KV Namespace - للكاش (sessions, rate limits, etc.)
+# ================================================================
+[[kv_namespaces]]
+binding = "CACHE"
+id = "3441f8c64ee248868c9ad453f0a546b0"
+
+# ================================================================
+# Cron Triggers - لمهام دورية (تنظيف، نسخ احتياطية)
+# ================================================================
+[triggers]
+crons = ["0 2 * * *"]  # كل يوم الساعة 2 صباحاً (UTC)
+
+# ================================================================
+# Observability - تسجيل الطلبات والأخطاء
+# ================================================================
+[observability]
+enabled = true
+head_sampling_rate = 1.0
+
+# ================================================================
+# Limits - removed cpu_ms (Workers Free plan doesn't support CPU limits)
+# ================================================================
+
+# ================================================================
+# Static Assets (Frontend) - served by the same Worker
+# ================================================================
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"

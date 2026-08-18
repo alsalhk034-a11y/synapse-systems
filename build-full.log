@@ -1,0 +1,132 @@
+﻿[36mvite v6.4.3 [32mbuilding for production...[36m[39m
+transforming...
+node.exe : [33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key 
+"patient" in object literal[33m
+At line:1 char:180
++ ... -warnings"; & "f:\anas al saleh1\node-portable\node-v20.18.0-win-x64\ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([33m[plugin vi...ct literal[33m 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+132|      // Appointments
+133|      newAppointmentTitle: '┘à┘ê╪╣╪» ╪ش╪»┘è╪»',
+134|      patient: '╪د┘┘à╪▒┘è╪╢',
+   |      ^
+135|      doctor2: '╪د┘╪╖╪ذ┘è╪ذ',
+136|      duration: '╪د┘┘à╪»╪ر',
+[39m
+[33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key "totalRevenue" 
+in object literal[33m
+321|      trialBalance: '┘à┘è╪▓╪د┘ ╪د┘┘à╪▒╪د╪ش╪╣╪ر',
+322|      cashFlow: '╪د┘╪ز╪»┘┘é╪د╪ز ╪د┘┘┘é╪»┘è╪ر',
+323|      totalRevenue: '╪ح╪ش┘à╪د┘┘è ╪د┘╪ح┘è╪▒╪د╪»╪د╪ز',
+   |      ^
+324|      totalExpenses: '╪ح╪ش┘à╪د┘┘è ╪د┘┘à╪╡╪▒┘ê┘╪د╪ز',
+325|      netIncome: '╪╡╪د┘┘è ╪د┘╪»╪«┘',
+[39m
+[33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key "password" in 
+object literal[33m
+365|      editUser: '╪ز╪╣╪»┘è┘ ╪د┘┘à╪│╪ز╪«╪»┘à',
+366|      userManagement: '╪ح╪»╪د╪▒╪ر ╪د┘┘à╪│╪ز╪«╪»┘à┘è┘',
+367|      password: '┘â┘┘à╪ر ╪د┘┘à╪▒┘ê╪▒',
+   |      ^
+368|      newPassword: '┘â┘┘à╪ر ┘à╪▒┘ê╪▒ ╪ش╪»┘è╪»╪ر',
+369|      fullName: '╪د┘╪د╪│┘à ╪د┘┘â╪د┘à┘',
+[39m
+[33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key "fullName" in 
+object literal[33m
+367|      password: '┘â┘┘à╪ر ╪د┘┘à╪▒┘ê╪▒',
+368|      newPassword: '┘â┘┘à╪ر ┘à╪▒┘ê╪▒ ╪ش╪»┘è╪»╪ر',
+369|      fullName: '╪د┘╪د╪│┘à ╪د┘┘â╪د┘à┘',
+   |      ^
+370|      email: '╪د┘╪ذ╪▒┘è╪» ╪د┘╪ح┘┘â╪ز╪▒┘ê┘┘è',
+371|      patientPortal: '╪ذ┘ê╪د╪ذ╪ر ╪د┘┘à╪▒┘è╪╢',
+[39m
+[33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key "patientLogin" 
+in object literal[33m
+370|      email: '╪د┘╪ذ╪▒┘è╪» ╪د┘╪ح┘┘â╪ز╪▒┘ê┘┘è',
+371|      patientPortal: '╪ذ┘ê╪د╪ذ╪ر ╪د┘┘à╪▒┘è╪╢',
+372|      patientLogin: '╪»╪«┘ê┘ ╪د┘┘à╪▒┘è╪╢',
+   |      ^
+373|      myPortal: '╪ذ┘ê╪د╪ذ╪ز┘è',
+374|      linkedPatient: '╪د┘┘à╪▒┘è╪╢ ╪د┘┘à╪▒╪ز╪ذ╪╖',
+[39m
+[33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key "active" in 
+object literal[33m
+436|      severe: '╪┤╪»┘è╪»',
+437|      lifeThreatening: '┘à┘ç╪»╪» ┘┘╪ص┘è╪د╪ر',
+438|      active: '┘╪┤╪╖',
+   |      ^
+439|      chronic: '┘à╪▓┘à┘',
+440|      resolved: '╪ز┘à ╪د┘╪┤┘╪د╪ة',
+[39m
+[33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key "patient" in 
+object literal[33m
+580|  
+581|      newAppointmentTitle: 'New appointment',
+582|      patient: 'Patient',
+   |      ^
+583|      doctor2: 'Doctor',
+584|      duration: 'Duration',
+[39m
+[33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key "totalRevenue" 
+in object literal[33m
+763|      trialBalance: 'Trial Balance',
+764|      cashFlow: 'Cash Flow',
+765|      totalRevenue: 'Total Revenue',
+   |      ^
+766|      totalExpenses: 'Total Expenses',
+767|      netIncome: 'Net Income',
+[39m
+[33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key "password" in 
+object literal[33m
+807|      editUser: 'Edit user',
+808|      userManagement: 'User Management',
+809|      password: 'Password',
+   |      ^
+810|      newPassword: 'New password',
+811|      fullName: 'Full name',
+[39m
+[33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key "fullName" in 
+object literal[33m
+809|      password: 'Password',
+810|      newPassword: 'New password',
+811|      fullName: 'Full name',
+   |      ^
+812|      email: 'Email',
+813|      patientPortal: 'Patient Portal',
+[39m
+[33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key "patientLogin" 
+in object literal[33m
+812|      email: 'Email',
+813|      patientPortal: 'Patient Portal',
+814|      patientLogin: 'Patient Login',
+   |      ^
+815|      myPortal: 'My Portal',
+816|      linkedPatient: 'Linked patient',
+[39m
+[33m[plugin vite:esbuild] src/lib/i18n.ts: [33mDuplicate key "active" in 
+object literal[33m
+878|      severe: 'Severe',
+879|      lifeThreatening: 'Life-threatening',
+880|      active: 'Active',
+   |      ^
+881|      chronic: 'Chronic',
+882|      resolved: 'Resolved',
+[39m
+[32mظ£ô[39m 2849 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                 [39m[1m[2m  1.05 kB[22m[1m[22m[2m ظ¤é gzip:   0.55 kB[22m
+[33m
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: 
+https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via 
+build.chunkSizeWarningLimit.[39m
+[2mdist/[22m[35massets/index-BwOEXGfE.css  [39m[1m[2m 65.07 kB[22m[1m[22m[2m ظ¤é gzip:  10.99 kB[22m
+[2mdist/[22m[36massets/index-BIpUxT4Q.js   [39m[1m[33m862.48 kB[39m[22m[2m ظ¤é gzip: 239.95 kB[22m
+[32mظ£ô built in 9.19s[39m
+Build process exited with code 0

@@ -1,0 +1,293 @@
+﻿
+  ###  Synapse Systems - Final Deploy  ###
+
+  [OK] Resources: D1 (ready) + KV (ready) + R2 (skipped) + Assets (./dist)
+
+=== Step 1 : Upload Secrets ===
+  [i] Uploading JWT_SECRET...
+  [OK] JWT_SECRET
+  [i] Uploading ENCRYPTION_KEY...
+  [OK] ENCRYPTION_KEY
+  [i] Uploading DATABASE_ENCRYPTION_KEY...
+  [OK] DATABASE_ENCRYPTION_KEY
+
+=== Step 2 : Install Worker dependencies ===
+  [i] Worker deps already installed
+  [OK] Worker deps ready
+
+=== Step 3 : Apply database schema and seed ===
+  [i] Applying schema (0001_initial.sql)...
+    [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m
+    Note that there is a newer version of Wrangler available (4.123.0). Consider checking whether upgrading resolves this error.
+    ? Would you like to report this error to Cloudflare? Wrangler's output and the error details will be shared with the Wrangler team to help us diagnose and fix the issue.
+    ≡اجû Using fallback value in non-interactive context: no
+    ≡از╡  Logs were written to "F:\anas al saleh1\node-portable\wrangler\config\logs\wrangler-2026-08-18_00-10-13_332.log"
+  [OK] Schema applied
+  [i] Seeding data (0002_seed.sql)...
+    [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m
+    Note that there is a newer version of Wrangler available (4.123.0). Consider checking whether upgrading resolves this error.
+    ? Would you like to report this error to Cloudflare? Wrangler's output and the error details will be shared with the Wrangler team to help us diagnose and fix the issue.
+    ≡اجû Using fallback value in non-interactive context: no
+    ≡از╡  Logs were written to "F:\anas al saleh1\node-portable\wrangler\config\logs\wrangler-2026-08-18_00-10-19_312.log"
+  [OK] Seed applied
+
+=== Step 4 : Deploy Worker + Frontend ===
+  [i] Deploying...
+
+
+> @synapse/worker@1.0.0 deploy
+> node ../node-portable/wrangler/node_modules/wrangler/bin/wrangler.js deploy
+
+
+Cloudflare collects anonymous telemetry about your usage of Wrangler. Learn more at https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md
+
+ ظؤàي╕ wrangler 3.114.17 (update available 4.123.0)
+------------------------------------------------
+
+node.exe : [33mظû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of 
+Wrangler you are using is now out-of-date.[0m
+At F:\anas al saleh1\deploy-final.ps1:98 char:14
++ $deployOut = & $NodeExe $npmCli "run" "deploy" 2>&1 | Out-String
++              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([33mظû▓ [43;3...ut-of-date.[0m 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+≡اî Building list of assets...
+≡اî Starting asset upload...
+≡اî Found 189 new or modified static assets to upload. Proceeding with upload...
++ /assets/useDebounce-BrUSzqwc.js
++ /assets/useDebounce-YjTsuUxz.js
++ /assets/chevron-left-BKciP2Xo.js
++ /assets/play-B5Ue7yra.js
++ /assets/play-DCuAzNZb.js
++ /assets/user-BscYk1Nj.js
++ /assets/pill-CDQnD2rr.js
++ /assets/mail-BALF1z6H.js
++ /assets/mail-MV4TOvXE.js
++ /assets/heart-DGvSJKZ3.js
++ /assets/chart-column-CJh_LU3R.js
++ /assets/calendar-CIbByxmp.js
++ /assets/calendar-DaXaAh_H.js
++ /assets/printer-BpZOBZVm.js
++ /assets/save-CmabRnX3.js
++ /assets/key-round-2_E64JhT.js
++ /assets/key-round-DXXa8xQz.js
++ /assets/phone-DeiYr5YP.js
++ /assets/building-2-1-iYzjUC.js
++ /assets/building-2-D66hzXVG.js
++ /assets/cake-Tl6fK3Yc.js
++ /assets/smartphone-D1Aos-JV.js
++ /index.html
++ /assets/EmptyState-B_7fCFEB.js
++ /assets/Exams-9lWBHMfd.js
++ /assets/Exams-Bfr3AC1u.js
++ /assets/Audit-XXni17UI.js
++ /assets/Audit-D8aJ2X5X.js
++ /assets/queueStore-Cb4QX-4Y.js
++ /assets/Invoices-CSezASh8.js
++ /assets/Invoices-oXRGMYsH.js
++ /assets/PatientNew-EqJt_kl8.js
++ /assets/Reports-NBMqq_GQ.js
++ /assets/Reports-DkaccbZG.js
++ /assets/PatientsList-CcYnIrhK.js
++ /assets/PatientsList-Dw5oSxo5.js
++ /assets/InvoiceNew-DfFPuQon.js
++ /assets/Shortcuts-5o1y9rGg.js
++ /assets/Shortcuts-DaUZACvd.js
++ /assets/accountingStore-De-yytEI.js
++ /assets/accountingStore-Cs35JdQC.js
++ /assets/PatientPortal-Cz1wpngQ.js
++ /assets/PatientPortal-yI6UgwYC.js
++ /assets/Appointments-DVWJr2lB.js
++ /assets/Appointments-CbiXX6EW.js
++ /assets/UserManagement-dfzLGbea.js
++ /assets/InvoiceDetail-jrz7RIW6.js
++ /assets/InvoiceDetail-DMY3Jdik.js
++ /assets/Queue-BGmGl0Dx.js
++ /assets/XRayRequestModal-CF00mdYX.js
++ /assets/XRayRequestModal-5cnh_wh0.js
++ /assets/Printable-Dj1kgJIc.js
++ /assets/Accounting-DkZITAfL.js
++ /assets/Printable-BHNT1UeU.js
++ /assets/Printable-wWY-HGbc.js
++ /assets/ExamWorkspace-BGqvNd_d.js
++ /assets/Settings--Szmoon9.js
++ /assets/Settings-C6zL7N65.js
++ /assets/react-vendor-B8RM8LEd.js
++ /assets/PatientDetail-DI9mCSbc.js
++ /assets/index-2rMEc_z6.css
++ /assets/framer-wPvjFoR3.js
++ /assets/index-Bw4zLHv3.js
++ /assets/useDebounce-Ch1ePh-w.js
++ /assets/useDebounce-B8u2185l.js
++ /assets/chevron-left-CNzL_XO_.js
++ /assets/play-C7mgbeWh.js
++ /assets/user-Bb2aAGVj.js
++ /assets/user-Da63Fmog.js
++ /assets/pill-CJWj0mE2.js
++ /assets/mail-Cv2AdJha.js
++ /assets/heart-1jB7OiI0.js
++ /assets/heart-p0OE9yHD.js
++ /assets/chart-column-CvH8ib6e.js
++ /assets/calendar-CTuUdHnC.js
++ /assets/printer-BPS8XXaY.js
++ /assets/printer-oUk2A22M.js
++ /assets/save-DLOM7rlu.js
++ /assets/key-round-C-o8pkbT.js
++ /assets/phone-BgM-S_FM.js
++ /assets/phone-cNeqDx6x.js
++ /assets/building-2-CjRIdk1m.js
++ /assets/cake-CTPmNwZ4.js
++ /assets/cake-synj9D8F.js
++ /assets/smartphone-D3VeBs7y.js
++ /assets/EmptyState-C87vms9v.js
++ /assets/EmptyState-DM4-VN7U.js
++ /assets/Exams-JRJIVwsK.js
++ /assets/Audit-B0faXzSp.js
++ /assets/Audit-cw3LYwcH.js
++ /assets/queueStore-739oAbiw.js
++ /assets/queueStore-D7aAqZAz.js
++ /assets/Invoices-Dv2I7cCW.js
++ /assets/Invoices-CbCDUHTR.js
++ /assets/PatientNew-ltvIROsa.js
++ /assets/Reports-U-HfVpih.js
++ /assets/Reports-ubnEUndQ.js
++ /assets/PatientsList-KMO2qhLC.js
++ /assets/InvoiceNew-B4csP3lb.js
++ /assets/InvoiceNew-pS7zuu4b.js
++ /assets/Shortcuts-BsFLDlZD.js
++ /assets/PatientNew-D7Cv3M7z.js
++ /assets/accountingStore-BAmLH1WS.js
++ /assets/accountingStore-axeuUaki.js
++ /assets/PatientPortal-XZv7L7ve.js
++ /assets/Appointments-C6cefPyg.js
++ /assets/Appointments-LLz5tj0K.js
++ /assets/UserManagement-CvqfqTWE.js
++ /assets/UserManagement-v7LPOw5L.js
++ /assets/InvoiceDetail-vLaipzSP.js
++ /assets/Queue-D2hJzAB7.js
++ /assets/Queue-CKhQWOkk.js
++ /assets/XRayRequestModal-C4DcRKHA.js
++ /assets/XRayRequestModal-BXiqloN5.js
++ /assets/Accounting-6-_M8cHp.js
++ /assets/Accounting-DoFahEw1.js
++ /assets/Printable-CZUAmiSP.js
++ /assets/ExamWorkspace-DLLqnNPH.js
++ /assets/ExamWorkspace-BaSDcv53.js
++ /assets/Settings-26ACSQFT.js
++ /assets/Settings-DrZsEq9f.js
++ /assets/PatientDetail-B7iwniN_.js
++ /assets/PatientDetail-BI1yfpqO.js
++ /assets/index-CWiKJcFK.css
++ /assets/index-CeBac0vW.js
++ /assets/index-ksFP30EO.js
++ /assets/useDebounce-KdnrcWhm.js
++ /assets/chevron-left-0iDCjJqj.js
++ /assets/chevron-left-Cp6fR0mr.js
++ /assets/play-DWwqDaiJ.js
++ /assets/user-BqHLsnB6.js
++ /assets/pill-C2tUAjnt.js
++ /assets/pill-_oqV6gMJ.js
++ /assets/mail-D0WyFMQs.js
++ /assets/heart-B3tlRlhZ.js
++ /assets/chart-column-BTQCX3d6.js
++ /assets/chart-column-J_kYkdLI.js
++ /assets/calendar-D2sYchqB.js
++ /assets/printer-BX7kWG30.js
++ /assets/save-Bdn2mGsE.js
++ /assets/save-RrKvi6lW.js
++ /assets/key-round-CF9rsrlY.js
++ /assets/phone-CCMp_OTs.js
++ /favicon.svg
++ /assets/building-2-CpJ5tlXr.js
++ /assets/cake-DZs-ZL1g.js
++ /assets/smartphone-BlUSIXeK.js
++ /assets/smartphone-Dag7H0at.js
++ /assets/EmptyState-BOOQVoKy.js
++ /assets/EmptyState-DR1UEQUb.js
++ /assets/Exams-BeifX0ya.js
++ /assets/Audit-BqAVBwGn.js
++ /assets/Exams-Bbfz9EDx.js
++ /assets/queueStore-BC2mDlMW.js
++ /assets/queueStore-DjeEA54E.js
++ /assets/Invoices-ED141c9p.js
++ /assets/PatientsList-BFU4O9zv.js
++ /assets/Shortcuts-T8yyFhJV.js
++ /assets/Reports-DIt4zq88.js
++ /assets/PatientNew-D95hZE_v.js
++ /assets/PatientsList-w1huGKTe.js
++ /assets/InvoiceNew-D6DiQvpq.js
++ /assets/InvoiceNew-BcR45FkM.js
++ /assets/Shortcuts-CjG43mqO.js
++ /assets/PatientNew-DpEn23h-.js
++ /assets/accountingStore-Bbdmwx6w.js
++ /assets/PatientPortal-CnHa39MU.js
++ /assets/PatientPortal-sH3RV7yD.js
++ /assets/UserManagement-BcG8MDEF.js
++ /assets/Appointments-qgHElgLI.js
++ /assets/UserManagement-Cz9ZNusV.js
++ /assets/InvoiceDetail-DCzRJCeV.js
++ /assets/InvoiceDetail-CUNs-TMh.js
++ /assets/Queue--2NT9Yv0.js
++ /assets/Queue-DHcM6ole.js
++ /assets/XRayRequestModal-Cc3PiPPj.js
++ /assets/ExamWorkspace-fcIY-EMU.js
++ /assets/Accounting-C99B2itg.js
++ /assets/Accounting-VGHhI05j.js
++ /assets/Printable-HG3ncq1m.js
++ /assets/ExamWorkspace-BDeRtpkP.js
++ /assets/date-fns-Ci-yvz9m.js
++ /assets/Settings-BNT5CkB1.js
++ /assets/icons-Djp2UVKZ.js
++ /assets/PatientDetail-B0mxeSot.js
++ /assets/PatientDetail-CwJICLak.js
++ /assets/index-DX38gV0D.css
++ /assets/index-CBOzS-tf.js
++ /assets/index-oEqcjsdW.js
+Uploaded 63 of 189 assets
+Uploaded 126 of 189 assets
+Uploaded 189 of 189 assets
+ظ£ذ Success! Uploaded 189 files (13.61 sec)
+
+Total Upload: 332.58 KiB / gzip: 67.72 KiB
+Your worker has access to the following bindings:
+- KV Namespaces:
+  - CACHE: 3441f8c64ee248868c9ad453f0a546b0
+- D1 Databases:
+  - DB: synapse-systems-db (59afaea5-384b-4fd5-b0dc-e8f61f1f995c)
+- Vars:
+  - ENVIRONMENT: "production"
+  - CLINIC_NAME: "╪╣┘è╪د╪»╪ر ╪د┘┘┘ê╪▒ ┘┘╪ث╪╖┘╪د┘"
+  - CLINIC_NAME_EN: "Al-Noor Pediatric Clinic"
+  - APP_VERSION: "1.0.0"
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mA request to the Cloudflare API 
+(/accounts/4cb018e4fe69cef8365deadec2cf16f0/workers/scripts/synapse-systems/ver
+sions) failed.[0m
+
+  Invalid _redirects configuration:
+  Line 5: Proxy (200) redirects can only point to relative paths. Got 
+[4mhttps://synapse-systems.<your-subdomain>.workers.dev/api/:splat[0m
+  Line 6: Infinite loop detected in this rule. This would cause a redirect to 
+strip `.html` or `/index` and end up triggering this rule again. [code: 100324]
+
+  
+  If you think this is a bug, please open an issue at: 
+[4mhttps://github.com/cloudflare/workers-sdk/issues/new/choose[0m
+
+
+≡از╡  Logs were written to "F:\anas al 
+saleh1\node-portable\wrangler\config\logs\wrangler-2026-08-18_00-10-23_296.log"
+
+
+  [!] Deployment may have succeeded but URL was not detected.
+  Check the output above for the URL or visit:
+  https://dash.cloudflare.com/4cb018e4fe69cef8365deadec2cf16f0/workers/services/view/synapse-systems
+
