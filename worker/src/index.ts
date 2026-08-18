@@ -499,8 +499,15 @@ app.notFound(async (c) => {
   // أي شيء آخر → SPA (index.html) عبر ASSETS binding
   try {
     const res = await c.env.ASSETS.fetch(c.req.raw)
-    // أنشئ response جديد مع CSP المخصص و headers الأمان
-    const headers = new Headers(res.headers)
+    // ابدأ بـ headers الـ Worker (يحتوي CSP من secureHeaders middleware)
+    const headers = new Headers(c.res.headers)
+    // ثم ضع/استبدل headers الـ asset response
+    res.headers.forEach((v, k) => {
+      if (k.toLowerCase() !== 'content-security-policy' && k.toLowerCase() !== 'cache-control') {
+        headers.set(k, v)
+      }
+    })
+    // ضع CSP مخصص (يحتوي Google Fonts)
     headers.set(
       'Content-Security-Policy',
       "default-src 'self'; " +
@@ -514,9 +521,6 @@ app.notFound(async (c) => {
       "base-uri 'self'; " +
       "form-action 'self'"
     )
-    headers.set('X-Frame-Options', 'DENY')
-    headers.set('X-Content-Type-Options', 'nosniff')
-    headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
     // تجنّب تخزين HTML في CDN cache
     headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
     headers.set('Pragma', 'no-cache')
