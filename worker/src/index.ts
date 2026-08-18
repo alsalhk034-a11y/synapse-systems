@@ -58,7 +58,24 @@ const app = new Hono<{ Bindings: Bindings }>()
 // ============== Middleware ==============
 app.use('*', logger())
 app.use('*', prettyJSON())
-app.use('*', secureHeaders())
+
+// CSP مخصّص ليسمح بـ Google Fonts و Cloudflare الكامل
+app.use('*', secureHeaders({
+  contentSecurityPolicy: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+    styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+    styleSrcElem: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+    fontSrc: ["'self'", 'https://fonts.gstatic.com', 'data:'],
+    imgSrc: ["'self'", 'data:', 'blob:', 'https:'],
+    connectSrc: ["'self'", 'https://*.cloudflare.com', 'https://*.workers.dev', 'https://fonts.googleapis.com', 'https://fonts.gstatic.com'],
+    frameAncestors: ["'none'"],
+    baseUri: ["'self'"],
+    formAction: ["'self'"],
+  },
+  crossOriginEmbedderPolicy: false,
+  crossOriginResourcePolicy: false,
+}))
 
 app.use('*', cors({
   origin: (origin, c) => {
