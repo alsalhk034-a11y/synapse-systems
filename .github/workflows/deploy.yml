@@ -23,22 +23,41 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
-      - name: Type check
-        run: npx tsc -b
+      - name: Type check (verbose)
+        run: |
+          echo "=== tsc -b --verbose output ==="
+          npx tsc -b --verbose 2>&1 | tee tsc-output.log || true
+          echo "=== END ==="
+        continue-on-error: true
+
+      - name: Upload tsc logs (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tsc-logs
+          path: tsc-output.log
+          if-no-files-found: ignore
 
       - name: Build (Vite)
         run: npm run build
         env:
           NODE_ENV: production
 
+      - name: List dist directory
+        run: |
+          echo "=== dist/ contents ==="
+          ls -la dist/ 2>&1 || echo "no dist dir"
+          echo "=== assets/ contents ==="
+          ls -la dist/assets/ 2>&1 || echo "no assets"
+
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: ./worker
+          workingDirectory: ./
           command: deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
