@@ -40,6 +40,14 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: build-output.log
+          if-no-files-found: ignore
+
       - name: List dist directory
         run: |
           echo "=== dist/ contents ==="
@@ -53,7 +61,15 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: ./
-          command: deploy
+          command: deploy --verbose 2>&1 | tee wrangler-deploy.log
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Upload deploy logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-logs
+          path: wrangler-deploy.log
+          if-no-files-found: ignore
