@@ -6,22 +6,39 @@ package-lock.json
 dist/
 .wrangler/
 .dev.vars
+.trae/
 
-# Portable tools
-node-portable/
-tools/
-wrangler-config/
+# Deploy / build cache
+.wrangler/
+.vercel/
+*.log
+build*.log
+build*.err.log
+build*.txt
+build*.bat
+deploy*.log
+deploy*.err.log
+deploy*.ps1
+deploy*.bat
+deploy*.cjs
+dev*.log
+install*.log
+npm*.log
+typecheck*.log
+setup*.log
+setup*.ps1
+serve*.ps1
+build-*.cjs
+check-*.cjs
+run-build.cjs
+extract-git.cjs
+DEPLOY.md
+.github-test/
 
 # Environment / secrets
 .env
 .env.local
 .env.*.local
-
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # IDE
 .vscode/
@@ -33,3 +50,6 @@ Thumbs.db
 # Test
 coverage/
 .nyc_output/
+
+# Temp
+temp_*/
