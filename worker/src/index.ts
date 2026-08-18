@@ -46,6 +46,7 @@ type Bindings = {
   DB: D1Database
   STORAGE?: R2Bucket  // Optional - enable R2 in Cloudflare dashboard
   CACHE: KVNamespace
+  ASSETS: Fetcher  // Static assets binding (Frontend)
   JWT_SECRET: string
   ENCRYPTION_KEY: string
   FRONTEND_URL: string
@@ -458,7 +459,21 @@ async function logAudit(db: D1Database, entry: {
 }
 
 // ============== 404 ==============
-app.notFound((c) => c.json({ error: 'Not found' }, 404))
+// طلبات الـ API ترجع JSON 404
+// طلبات الـ SPA (أي route لا يبدأ بـ /api/) تُمرّر إلى ASSETS الذي يقدّم index.html
+app.notFound(async (c) => {
+  const url = new URL(c.req.url)
+  // طلبات API → 404 JSON
+  if (url.pathname.startsWith('/api/')) {
+    return c.json({ error: 'Not found' }, 404)
+  }
+  // أي شيء آخر → SPA (index.html) عبر ASSETS binding
+  try {
+    return await c.env.ASSETS.fetch(c.req.raw)
+  } catch (e) {
+    return c.json({ error: 'Not found' }, 404)
+  }
+})
 
 app.onError((err, c) => {
   console.error(err)
