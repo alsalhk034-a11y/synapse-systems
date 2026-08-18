@@ -486,7 +486,26 @@ app.notFound(async (c) => {
   }
   // أي شيء آخر → SPA (index.html) عبر ASSETS binding
   try {
-    return await c.env.ASSETS.fetch(c.req.raw)
+    const res = await c.env.ASSETS.fetch(c.req.raw)
+    // أنشئ response جديد مع CSP المخصص و headers الأمان
+    const headers = new Headers(res.headers)
+    headers.set(
+      'Content-Security-Policy',
+      "default-src 'self'; " +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+      "style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+      "font-src 'self' https://fonts.gstatic.com data:; " +
+      "img-src 'self' data: blob: https:; " +
+      "connect-src 'self' https://*.cloudflare.com https://*.workers.dev https://fonts.googleapis.com https://fonts.gstatic.com; " +
+      "frame-ancestors 'none'; " +
+      "base-uri 'self'; " +
+      "form-action 'self'"
+    )
+    headers.set('X-Frame-Options', 'DENY')
+    headers.set('X-Content-Type-Options', 'nosniff')
+    headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+    return new Response(res.body, { status: res.status, headers })
   } catch (e) {
     return c.json({ error: 'Not found' }, 404)
   }
