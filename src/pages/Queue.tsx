@@ -323,7 +323,7 @@ export function QueuePage() {
             <AnimatePresence>
               {waiting.length === 0 ? (
                 <EmptyState
-                  icon={Users}
+                  icon={<Users className="h-6 w-6" />}
                   title={isAr ? 'لا يوجد منتظرون' : 'No one in the queue'}
                   description={isAr ? 'أضف مريضاً جديداً للدور' : 'Add a patient to the queue'}
                 />
@@ -384,7 +384,7 @@ export function QueuePage() {
       >
         <div className="space-y-2 max-h-96 overflow-y-auto">
           {finished.length === 0 ? (
-            <EmptyState icon={Activity} title={isAr ? 'لا يوجد' : 'Empty'} />
+            <EmptyState icon={<Activity className="h-6 w-6" />} title={isAr ? 'لا يوجد' : 'Empty'} />
           ) : (
             finished.map((e) => (
               <div
