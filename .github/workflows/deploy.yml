@@ -22,8 +22,11 @@ jobs:
             node-version: '20'
             cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install dependencies (root)
         run: npm ci --no-audit --no-fund
+
+      - name: Install worker dependencies
+        run: cd worker && npm ci --no-audit --no-fund && cd ..
 
       - name: Build (Vite only)
         run: npx vite build
