@@ -498,12 +498,16 @@ app.notFound(async (c) => {
   }
   // أي شيء آخر → SPA (index.html) عبر ASSETS binding
   try {
-    const res = await c.env.ASSETS.fetch(c.req.raw)
+    // حدد الـ path داخل assets
+    // الـ root path يستخدم index.html (SPA fallback)
+    const assetPath = url.pathname === '/' ? '/index.html' : url.pathname
+    const res = await c.env.ASSETS.fetch(new Request(new URL(assetPath, c.req.url), c.req.raw))
     // ابدأ بـ headers الـ Worker (يحتوي CSP من secureHeaders middleware)
     const headers = new Headers(c.res.headers)
     // ثم ضع/استبدل headers الـ asset response
     res.headers.forEach((v, k) => {
-      if (k.toLowerCase() !== 'content-security-policy' && k.toLowerCase() !== 'cache-control') {
+      const kl = k.toLowerCase()
+      if (kl !== 'content-security-policy' && kl !== 'cache-control' && kl !== 'x-frame-options' && kl !== 'x-content-type-options') {
         headers.set(k, v)
       }
     })
@@ -524,6 +528,8 @@ app.notFound(async (c) => {
     // تجنّب تخزين HTML في CDN cache
     headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
     headers.set('Pragma', 'no-cache')
+    headers.set('X-Frame-Options', 'DENY')
+    headers.set('X-Content-Type-Options', 'nosniff')
     return new Response(res.body, { status: res.status, headers })
   } catch (e) {
     return c.json({ error: 'Not found' }, 404)
