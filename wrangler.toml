@@ -75,3 +75,6 @@ head_sampling_rate = 1.0
 directory = "./dist"
 binding = "ASSETS"
 not_found_handling = "single-page-application"
+# تشغيل Worker لكل request (يطبّق CSP المخصص و headers الأمان)
+# ثم إذا لم يُعالج، يُمرّر إلى ASSETS
+run_worker_first = true
