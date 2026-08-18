@@ -28,22 +28,36 @@ jobs:
       - name: Type check (verbose)
         run: |
           echo "=== tsc -b --verbose output ==="
-          npx tsc -b --verbose 2>&1 | tee tsc-output.log || true
+          npx tsc -b --verbose 2>&1 | tee tsc-output.log
           echo "=== END ==="
         continue-on-error: true
 
-      - name: Upload tsc logs (on failure)
-        if: failure()
+      - name: Upload tsc logs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: tsc-logs
           path: tsc-output.log
           if-no-files-found: ignore
 
-      - name: Build (Vite)
-        run: npm run build
+      - name: Build (Vite) - with debug
+        run: |
+          echo "=== Environment ==="
+          node --version
+          npm --version
+          echo "=== Starting build ==="
+          npm run build 2>&1 | tee build-output.log
+          echo "=== Build exit code: $? ==="
         env:
           NODE_ENV: production
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: build-output.log
+          if-no-files-found: ignore
 
       - name: List dist directory
         run: |
