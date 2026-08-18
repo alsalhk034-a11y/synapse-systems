@@ -1,9 +1,0 @@
-﻿tsc.cmd : '"node"' is not recognized as an internal or external command,
-At line:1 char:74
-+ ... \.bin\tsc.cmd") { & "node_modules\.bin\tsc.cmd" --noEmit 2>&1 | Out-F ...
-+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: ('"node"' is not...ternal command, 
-   :String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-operable program or batch file.
