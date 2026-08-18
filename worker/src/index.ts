@@ -505,6 +505,9 @@ app.notFound(async (c) => {
     headers.set('X-Frame-Options', 'DENY')
     headers.set('X-Content-Type-Options', 'nosniff')
     headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+    // تجنّب تخزين HTML في CDN cache
+    headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+    headers.set('Pragma', 'no-cache')
     return new Response(res.body, { status: res.status, headers })
   } catch (e) {
     return c.json({ error: 'Not found' }, 404)
